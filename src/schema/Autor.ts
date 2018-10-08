@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-export const AuthorSchema = new mongoose.Schema({
+export const AutorSchema = new mongoose.Schema({
     nome: { 
         type: String, 
         required: true, 
