@@ -1,10 +1,10 @@
 import * as mongoose from 'mongoose';
-import { Author } from './author';
 
 export interface Book {
     title: string,
-    author: Author,
-    year: number
+    author: string,
+    genre: string,
+    year: Date
 }
 
 export interface BookDocument extends Book, mongoose.Document {}
