@@ -24,5 +24,10 @@ export const UsuarioSchema = new mongoose.Schema({
     livro: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'Livro'
+    },
+    slug: {
+        type: String,
+        required: true,
+        max: 100
     }
 });

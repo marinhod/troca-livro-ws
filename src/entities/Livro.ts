@@ -6,7 +6,8 @@ export interface Livro {
     titulo: string,
     autor: Autor[],
     genero: Genero[],
-    ano: Date
+    ano: Date,
+    slug: string
 }
 
 export interface LivroDocument extends Livro, mongoose.Document {}

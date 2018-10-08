@@ -17,6 +17,11 @@ export const LivroSchema = new mongoose.Schema({
     ano: {
         type: Date,
         required: true
+    },
+    slug: {
+        type: String,
+        required: true,
+        max: 100
     }
 
 });
