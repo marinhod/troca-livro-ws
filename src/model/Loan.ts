@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { LoanSchema } from '../schema/Loan';
+import { LoanSchema } from '../schema/Usuario';
 import { Loan, LoanDocument } from '../entities/Autor';
 
 const LoanModel = mongoose.model<LoanDocument>(

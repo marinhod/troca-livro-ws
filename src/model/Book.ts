@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { BookSchema } from '../schema/book';
+import { BookSchema } from '../schema/Livro';
 import { Book, BookDocument } from '../entities/Usuario';
 
 const BookModel = mongoose.model<BookDocument>(
