@@ -2,12 +2,12 @@ import * as mongoose from 'mongoose';
 import { UsuarioSchema } from '../schema/Usuario';
 import { Usuario, UsuarioDocument } from '../entities/Usuario';
 
-const LoanModel = mongoose.model<UsuarioDocument>(
+const UsuarioModel = mongoose.model<UsuarioDocument>(
     'Usuario', 
     UsuarioSchema, 
     'usuarios'
 );
 
-class LoanRepo {}
+class UsuarioRepo {}
 
-export default LoanRepo;
+export default UsuarioRepo;

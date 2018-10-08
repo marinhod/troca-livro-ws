@@ -2,12 +2,12 @@ import * as mongoose from 'mongoose';
 import { LivroSchema } from '../schema/Livro';
 import { Livro, LivroDocument } from '../entities/Livro';
 
-const BookModel = mongoose.model<LivroDocument>(
-    'Book', 
-    BookSchema, 
-    'books'
+const LivroModel = mongoose.model<LivroDocument>(
+    'Livro', 
+    LivroSchema, 
+    'livros'
 );
 
-class BookRepo {}
+class LivroRepo {}
 
-export default BookRepo;
+export default LivroRepo;

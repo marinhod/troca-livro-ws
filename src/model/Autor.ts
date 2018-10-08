@@ -2,12 +2,12 @@ import * as mongoose from 'mongoose';
 import { AutorSchema } from '../schema/Autor';
 import { Autor, AutorDocument } from '../entities/Autor';
 
-const AuthorModel = mongoose.model<AutorDocument>(
+const AutorModel = mongoose.model<AutorDocument>(
     'Autor', 
     AutorSchema, 
     'autors'
 );
 
-class AuthorRepo {}
+class AutorRepo {}
 
-export default AuthorRepo;
+export default AutorRepo;
