@@ -1,12 +1,12 @@
 import * as mongoose from 'mongoose';
 
 export const AuthorSchema = new mongoose.Schema({
-    first_name: { 
+    nome: { 
         type: String, 
         required: true, 
         max: 100 
     },
-    last_name: { 
+    sobrenome: { 
         type: String, 
         required: true, 
         max: 100 
