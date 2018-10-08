@@ -1,10 +1,11 @@
 import * as mongoose from 'mongoose';
-import { User } from './User';
+import { Genre } from './Genre'
+import { Author } from './Author'
 
 export interface Book {
     title: string,
-    author: string,
-    genre: string,
+    author: Author[],
+    genre: Genre[],
     year: Date
 }
 

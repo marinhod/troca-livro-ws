@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 import { BookSchema } from '../schema/book';
-import { Book, BookDocument } from '../entities/book';
+import { Book, BookDocument } from '../entities/User';
 
 const BookModel = mongoose.model<BookDocument>(
     'Book', 
