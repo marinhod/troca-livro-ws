@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 import { AuthorSchema } from '../schema/author';
-import { Author, AuthorDocument } from '../entities/Book';
+import { Author, AuthorDocument } from '../entities/Livro';
 
 const AuthorModel = mongoose.model<AuthorDocument>(
     'Author', 
