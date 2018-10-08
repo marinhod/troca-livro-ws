@@ -1,22 +1,13 @@
 import * as mongoose from 'mongoose';
-import { BookSchema } from '../schema/Livro';
-import { Book, BookDocument } from '../entities/Usuario';
+import { LivroSchema } from '../schema/Livro';
+import { Livro, LivroDocument } from '../entities/Livro';
 
-const BookModel = mongoose.model<BookDocument>(
+const BookModel = mongoose.model<LivroDocument>(
     'Book', 
     BookSchema, 
     'books'
 );
 
-class BookRepo {
-    static async create(book: Book): Promise<Book> {
-        let newItem = new BookModel(book);
-        return newItem.save();
-    }
-    static async list(): Promise<Book[]> {
-        let list = await BookModel.find().lean().exec();
-        return list;
-    }
-}
+class BookRepo {}
 
 export default BookRepo;
