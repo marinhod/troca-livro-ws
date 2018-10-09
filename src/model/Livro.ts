@@ -8,6 +8,12 @@ const LivroModel = mongoose.model<LivroDocument>(
     'livros'
 );
 
-class LivroRepo {}
+class LivroRepo {
+    static async get(): Promise<Livro> {
+        // fix this!
+        let item = await LivroModel.find().lean().exec();
+        return item;
+    }
+}
 
 export default LivroRepo;
