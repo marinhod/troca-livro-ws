@@ -1,5 +1,5 @@
 import express = require('express');
-import UsuarioController from './controller/Usuario';
+import UsuarioController from './controllers/Usuario';
 
 const ROUTER = express.Router();
 
