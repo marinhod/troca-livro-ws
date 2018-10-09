@@ -8,6 +8,12 @@ const UsuarioModel = mongoose.model<UsuarioDocument>(
     'usuarios'
 );
 
-class UsuarioRepo {}
+class UsuarioRepo {
+    static async get(): Promise<Usuario> {
+        // fix this!
+        let item = await UsuarioModel.find().lean().exec();
+        return item;
+    }
+}
 
 export default UsuarioRepo;
