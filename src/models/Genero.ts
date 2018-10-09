@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 import { GeneroSchema } from '../schemas/Genero';
-import { Genero, GeneroDocument } from '../entities/Genero';
+import { Genero, GeneroDocument } from '../entidades/Genero';
 
 const LoanModel = mongoose.model<GeneroDocument>(
     'Genero', 

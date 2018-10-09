@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 import { LivroSchema } from '../schemas/Livro';
-import { Livro, LivroDocument } from '../entities/Livro';
+import { Livro, LivroDocument } from '../entidades/Livro';
 
 const LivroModel = mongoose.model<LivroDocument>(
     'Livro', 
