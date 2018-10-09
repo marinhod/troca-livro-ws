@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import LivroModel from '../model/Livro';
+import LivroModel from '../models/Livro';
 
 class LivroController {
     async get(req: Request, res: Response, next: NextFunction): Promise<void> {

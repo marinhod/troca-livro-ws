@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import UsuarioModel from '../model/Usuario';
+import UsuarioModel from '../models/Usuario';
 
 class UsuarioController {
     async get(req: Request, res: Response, next: NextFunction): Promise<void> {
