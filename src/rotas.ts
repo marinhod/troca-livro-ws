@@ -1,12 +1,13 @@
 import express = require('express');
 import UsuarioController from './controllers/Usuario';
+import LivroController from './controllers/Livro';
 
 const ROUTER = express.Router();
 
 const USUARIO_CONTROLLER = new UsuarioController();
 const USUARIO_URL = 'usuario';
 
-const LIVRO_CONTROLLER = new UsuarioController();
+const LIVRO_CONTROLLER = new LivroController();
 const LIVRO_URL = 'livro';
 
 ROUTER
