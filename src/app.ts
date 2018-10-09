@@ -1,7 +1,7 @@
 import express = require('express');
 import * as mongoose from 'mongoose';
 import * as bodyParser from 'body-parser';
-import router from './routes';
+import router from './rotas';
 
 class App {
     public app: express.Application;
