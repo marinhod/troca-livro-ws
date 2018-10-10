@@ -9,7 +9,7 @@ const LivroModel = mongoose.model<LivroDocument>(
 );
 
 class LivroRepo {
-    static async get(): Promise<Livro> {
+    static async get(slug: string): Promise<Livro> {
         // fix this!
         let item = await LivroModel.find().lean().exec();
         return item;

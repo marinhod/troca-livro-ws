@@ -4,7 +4,7 @@ import LivroModel from '../models/Livro';
 class LivroController {
     async get(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            let item = await LivroModel.get();
+            let item = await LivroModel.get(req.params.slug);
             res.json(item);
         } catch(error) {
             res.status(500);

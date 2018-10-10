@@ -9,7 +9,7 @@ const UsuarioModel = mongoose.model<UsuarioDocument>(
 );
 
 class UsuarioRepo {
-    static async get(): Promise<Usuario> {
+    static async get(slug: string): Promise<Usuario> {
         // fix this!
         let item = await UsuarioModel.find().lean().exec();
         return item;
