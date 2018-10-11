@@ -13,6 +13,13 @@ class UsuarioRepo {
         let item = await UsuarioModel.findOne({ slug: slug }).lean().exec();
         return item;
     }
+
+    static async create(usuario: Usuario): Promise<Usuario> {
+        let newItem = new UsuarioModel(usuario);
+        return newItem.save();
+    }
+
+
 }
 
 export default UsuarioRepo;

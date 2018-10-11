@@ -8,6 +8,6 @@ const AutorModel = mongoose.model<AutorDocument>(
     'autors'
 );
 
-class AutorRepo {}
+class AutorRepo { }
 
 export default AutorRepo;

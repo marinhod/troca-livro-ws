@@ -15,6 +15,25 @@ class UsuarioController {
             next(error);
         }
     }
+
+    async create(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            if (!req.body.first_name || !req.body.last_name) {
+                res.status(400).send('Invalid request object');
+            }
+            let {first_name, last_name} = req.body;
+            let newItem = await UsuarioModel.create(req.body);
+            res.status(201).json(newItem);
+        } catch(error) {
+            res.status(500);
+            next(error);
+        }
+    }
+
+
+
+
+
 }
 
 export default UsuarioController;
