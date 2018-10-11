@@ -5,7 +5,11 @@ class UsuarioController {
     async get(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             let item = await UsuarioModel.get(req.params.slug);
-            res.json(item);
+            if (item) {
+                res.status(200).json(item);
+            } else {
+                res.status(404).end();
+            }
         } catch(error) {
             res.status(500);
             next(error);
