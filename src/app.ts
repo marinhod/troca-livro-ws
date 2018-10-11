@@ -1,6 +1,7 @@
 import express = require('express');
 import * as mongoose from 'mongoose';
 import * as bodyParser from 'body-parser';
+import * as cors from 'cors';
 import router from './rotas';
 
 class App {
@@ -28,6 +29,8 @@ class App {
         this.app.use(bodyParser.json());
         // To suport POST requests with application/x-www-form-urlencoded
         this.app.use(bodyParser.urlencoded({extended: false}));
+        // To suport CORS
+        this.app.use(cors());
     }
 
     private routes(): void {
