@@ -15,6 +15,20 @@ class LivroController {
             next(error);
         }
     }
+    async create(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            if (!req.body.title || !req.body.year) {
+                res.status(400).send('Invalid request object');
+            }
+            let {title, year, author} = req.body;
+            let newItem = await LivroModel.create(req.body);
+            res.status(201).json(newItem);
+        } catch(error) {
+            res.status(500);
+            next(error);
+        }
+    }
+   
 }
 
 export default LivroController;

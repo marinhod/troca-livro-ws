@@ -11,9 +11,11 @@ const LIVRO_CONTROLLER = new LivroController();
 const LIVRO_URL = 'livro';
 
 ROUTER
-.get(`/${USUARIO_URL}/:slug`, USUARIO_CONTROLLER.get);
+.get(`/${USUARIO_URL}/:slug`, USUARIO_CONTROLLER.get)
+.post(`/${USUARIO_URL}`, USUARIO_CONTROLLER.create);
 
 ROUTER
-.get(`/${LIVRO_URL}/:slug`, LIVRO_CONTROLLER.get);
+.get(`/${LIVRO_URL}/:slug`, LIVRO_CONTROLLER.get)
+.post(`/${LIVRO_URL}`, LIVRO_CONTROLLER.create);
 
 export default ROUTER;

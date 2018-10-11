@@ -13,6 +13,10 @@ class LivroRepo {
         let item = await LivroModel.findOne({ slug: slug }).lean().exec();
         return item;
     }
+    static async create(livro: Livro): Promise<Livro> {
+        let newItem = new LivroModel(livro);
+        return newItem.save();
+    }
 }
 
 export default LivroRepo;
