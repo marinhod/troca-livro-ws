@@ -15,7 +15,7 @@ class App {
 
     private async db(): Promise<void> {
         // Add here database configurations
-        const url = 'mongodb://localhost:27017/library';
+        const url = 'mongodb://localhost:27017/trocalivro';
         await mongoose.connect(url, { useNewUrlParser: true });
         console.log('Connected to DB successfully');
     }
