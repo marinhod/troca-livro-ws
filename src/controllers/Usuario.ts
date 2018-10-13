@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import UsuarioModel from '../models/Usuario';
+import { validationResult } from 'express-validator/check';
 
 class UsuarioController {
     async get(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -18,21 +19,11 @@ class UsuarioController {
 
     async create(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            req.assert('nome', "O campo 'nome' não pode estar vazio").notEmpty();
-            req.assert('sobrenome', "O campo 'sobrenome' não pode estar vazio").notEmpty();
-            req.assert('email', "O campo 'email' não pode estar vazio").notEmpty();
-            
-            const erros = req.validationErrors();
-
-            if (erros) {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
                 res.status(400).send('Compos inválidos');
             }
 
-            let {
-                nome,
-                sobrenome
-            } = req.body;
-            
             let newItem = await UsuarioModel.create(req.body);
             res.status(201).json(newItem);
         } catch(error) {
