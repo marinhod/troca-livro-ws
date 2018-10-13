@@ -17,9 +17,10 @@ ROUTER
 
 ROUTER
 .post(`/${USUARIO_URL}`, [
-    check('nome').not().isEmpty(),
-    check('sobrenome').not().isEmpty(),
-    check('email').not().isEmpty().isEmail()
+    check('nome').not().isEmpty().isString(),
+    check('sobrenome').not().isEmpty().isString(),
+    check('email').not().isEmpty().isEmail(),
+    check('foto').isString()
   ],
   USUARIO_CONTROLLER.create);
 
