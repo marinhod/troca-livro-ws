@@ -10,8 +10,14 @@ class App {
 
     constructor() {
         this.app = express();
+        
+        // Midlewares
+        this.app.use(expressValidator());
+        this.app.use(bodyParser.json());
+        this.app.use(bodyParser.urlencoded({extended: false}));
+        this.app.use(cors());
+        
         this.db();
-        this.midleware();
         this.routes();
     }
 
@@ -21,21 +27,7 @@ class App {
         await mongoose.connect(url, { useNewUrlParser: true });
         console.log('Connected to DB successfully');
     }
-
-    private midleware(): void {
-        // Add here midleware configurations
-        // Through this.app.use()
-
-        // To suport POST requests with application/json
-        this.app.use(bodyParser.json());
-        // To suport POST requests with application/x-www-form-urlencoded
-        this.app.use(bodyParser.urlencoded({extended: false}));
-        // To suport CORS
-        this.app.use(cors());
-        // RequestBody Validation
-        this.app.use(expressValidator());
-    }
-
+    
     private routes(): void {
         // Add here routing configurations
         this.app.use('/api/v1', router);
