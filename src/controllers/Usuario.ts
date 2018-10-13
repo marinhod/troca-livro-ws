@@ -21,6 +21,7 @@ class UsuarioController {
             req.assert('nome', "O campo 'nome' não pode estar vazio").notEmpty();
             req.assert('sobrenome', "O campo 'sobrenome' não pode estar vazio").notEmpty();
             req.assert('email', "O campo 'email' não pode estar vazio").notEmpty();
+            req.assert('email', "O campo 'email' não pode estar vazio").isEmail();
             
             const erros = req.validationErrors();
 
