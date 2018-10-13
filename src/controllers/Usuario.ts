@@ -18,10 +18,21 @@ class UsuarioController {
 
     async create(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            if (!req.body.first_name || !req.body.last_name) {
-                res.status(400).send('Invalid request object');
+            req.assert('nome', "O campo 'nome' não pode estar vazio").notEmpty();
+            req.assert('sobrenome', "O campo 'sobrenome' não pode estar vazio").notEmpty();
+            req.assert('email', "O campo 'email' não pode estar vazio").notEmpty();
+            
+            const erros = req.validationErrors();
+
+            if (erros) {
+                res.status(400).send('Compos inválidos');
             }
-            let {first_name, last_name} = req.body;
+
+            let {
+                nome,
+                sobrenome
+            } = req.body;
+            
             let newItem = await UsuarioModel.create(req.body);
             res.status(201).json(newItem);
         } catch(error) {
@@ -29,10 +40,6 @@ class UsuarioController {
             next(error);
         }
     }
-
-
-
-
 
 }
 

@@ -10,12 +10,18 @@ const USUARIO_URL = 'usuario';
 const LIVRO_CONTROLLER = new LivroController();
 const LIVRO_URL = 'livro';
 
+// USUARIO
 ROUTER
-.get(`/${USUARIO_URL}/:slug`, USUARIO_CONTROLLER.get)
-.post(`/${USUARIO_URL}`, USUARIO_CONTROLLER.create);
+.get(`/${USUARIO_URL}/:slug`, USUARIO_CONTROLLER.get);
 
 ROUTER
-.get(`/${LIVRO_URL}/:slug`, LIVRO_CONTROLLER.get)
-.post(`/${LIVRO_URL}`, LIVRO_CONTROLLER.create);
+.post(`/${USUARIO_URL}`, USUARIO_CONTROLLER.create);
+
+// LIVRO
+ROUTER
+.get(`/${LIVRO_URL}/:slug`, LIVRO_CONTROLLER.get);
+
+ROUTER
+.get(`/${LIVRO_URL}`, LIVRO_CONTROLLER.create);
 
 export default ROUTER;

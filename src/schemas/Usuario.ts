@@ -18,7 +18,6 @@ export const UsuarioSchema = new mongoose.Schema({
     },
     foto: {
         type: String,
-        required: true,
         max: 100
     },
     livro: {
@@ -27,7 +26,6 @@ export const UsuarioSchema = new mongoose.Schema({
     },
     slug: {
         type: String,
-        required: true,
         max: 100
     }
 });
