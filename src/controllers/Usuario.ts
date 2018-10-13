@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import UsuarioModel from '../models/Usuario';
 import { validationResult } from 'express-validator/check';
+import * as slug from 'slug';
+import UsuarioModel from '../models/Usuario';
 
 class UsuarioController {
     async get(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -24,7 +25,11 @@ class UsuarioController {
                 res.status(400).send('Compos inválidos');
             }
 
-            let newItem = await UsuarioModel.create(req.body);
+            let slugString = `${req.body.nome} ${req.body.sobrenome}`;
+            let slugVal = slug(slugString, { lower: true }); 
+            const dados = Object.assign({slug: slugVal}, req.body);
+            
+            let newItem = await UsuarioModel.create(dados);
             res.status(201).json(newItem);
         } catch(error) {
             res.status(500);
