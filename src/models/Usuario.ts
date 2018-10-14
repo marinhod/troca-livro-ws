@@ -1,7 +1,6 @@
 import * as mongoose from 'mongoose';
 import { UsuarioSchema } from '../schemas/Usuario';
 import { Usuario, UsuarioDocument } from '../entidades/Usuario';
-import { Livro } from '../entidades/Livro';
 
 const UsuarioModel = mongoose.model<UsuarioDocument>(
     'Usuario', 
@@ -20,12 +19,16 @@ class UsuarioRepo {
         return newItem.save();
     }
 
-    static async addLivro(usuarioSlug: string, livroSLug: string): Promise<void> {
-        await UsuarioModel.findOneAndUpdate(
-            { slug: usuarioSlug }, 
+    static async addLivro(usuarioSlug: string, livroSLug: string): Promise<Usuario> {
+        let modificado = await UsuarioModel.findOneAndUpdate(
+            { 
+                slug: usuarioSlug, 
+                'livros': { $ne: livroSLug }
+            }, 
             { $push: { livros: livroSLug } }, 
             { new: true } 
-        );
+        ).lean().exec();
+        return modificado;
     }
 }
 

@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { validationResult } from 'express-validator/check';
 import UsuarioModel from '../models/Usuario';
-import LivroModel from '../models/Livro';
 import { slugify } from '../util';
 
 class UsuarioController {
@@ -44,8 +43,11 @@ class UsuarioController {
                 res.status(400).send('Compos inválidos');
             }
             
-            await UsuarioModel.addLivro(req.body.usuario, req.body.livro);
-            res.status(400).send('teste');
+            let modificado = await UsuarioModel.addLivro(req.body.usuario, req.body.livro);
+            if (!modificado) {
+                res.status(400).send('Livro já está na lista');
+            }
+            res.status(201).json(modificado);
         } catch (error) {
             res.status(500);
             next(error);
