@@ -35,7 +35,15 @@ class LivroController {
             next(error);
         }
     }
-   
+    async list(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            let lista = await LivroModel.list();
+            res.json(lista);
+        } catch(erro) {
+            res.status(500);
+            next(erro);
+        }
+    }
 }
 
 export default LivroController;

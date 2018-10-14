@@ -36,6 +36,7 @@ ROUTER
     // check('autor').isString(),
     // check('genero').isString()
   ],
-  LIVRO_CONTROLLER.create);
+  LIVRO_CONTROLLER.create)
+.get(`/${LIVRO_URL}`, LIVRO_CONTROLLER.list);
 
 export default ROUTER;

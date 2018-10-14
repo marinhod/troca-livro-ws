@@ -17,6 +17,10 @@ class LivroRepo {
         let newItem = new LivroModel(livro);
         return newItem.save();
     }
+    static async list(): Promise<Livro[]> {
+        let list = await LivroModel.find().lean().exec();
+        return list;
+    }
 }
 
 export default LivroRepo;
