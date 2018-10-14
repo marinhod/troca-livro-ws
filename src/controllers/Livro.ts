@@ -1,4 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
+import { validationResult } from 'express-validator/check';
+import * as slug from 'slug';
 import LivroModel from '../models/Livro';
 
 class LivroController {
@@ -17,13 +19,18 @@ class LivroController {
     }
     async create(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            if (!req.body.title || !req.body.year) {
-                res.status(400).send('Invalid request object');
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                res.status(400).send('Compos inválidos');
             }
-            let {title, year, author} = req.body;
-            let newItem = await LivroModel.create(req.body);
+
+            let slugVal = slug(req.body.titulo, { lower: true }); 
+            const dados = Object.assign({slug: slugVal}, req.body);
+            
+            let newItem = await LivroModel.create(dados);
             res.status(201).json(newItem);
-        } catch(error) {
+
+            } catch(error) {
             res.status(500);
             next(error);
         }

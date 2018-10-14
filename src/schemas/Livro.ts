@@ -20,8 +20,6 @@ export const LivroSchema = new mongoose.Schema({
     },
     slug: {
         type: String,
-        required: true,
         max: 100
     }
-
 });

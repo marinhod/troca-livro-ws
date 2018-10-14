@@ -29,6 +29,12 @@ ROUTER
 .get(`/${LIVRO_URL}/:slug`, LIVRO_CONTROLLER.get);
 
 ROUTER
-.get(`/${LIVRO_URL}`, LIVRO_CONTROLLER.create);
+.post(`/${LIVRO_URL}`, [
+    check('titulo').not().isEmpty().isString(),
+    check('ano').not().isEmpty().isString(),
+    check('autor').isString(),
+    check('genero').isString()
+  ],
+  LIVRO_CONTROLLER.create);
 
 export default ROUTER;
