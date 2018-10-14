@@ -15,11 +15,19 @@ export const LivroSchema = new mongoose.Schema({
         ref: 'Genero'
     },
     ano: {
-        type: Date,
-        required: true
+        type: String,
+        required: true,
+        max: 4
     },
     capa: {
-        type: String
+        type: String,
+        required: true,
+        max: 1000
+    },
+    descricao: {
+        type: String,
+        required: true,
+        max: 5000
     },
     slug: {
         type: String,
