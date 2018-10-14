@@ -32,8 +32,9 @@ ROUTER
 .post(`/${LIVRO_URL}`, [
     check('titulo').not().isEmpty().isString(),
     check('ano').not().isEmpty().isString(),
-    check('autor').isString(),
-    check('genero').isString()
+    check('capa').not().isEmpty().isString()
+    // check('autor').isString(),
+    // check('genero').isString()
   ],
   LIVRO_CONTROLLER.create);
 

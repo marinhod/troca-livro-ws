@@ -18,6 +18,9 @@ export const LivroSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    capa: {
+        type: String
+    },
     slug: {
         type: String,
         max: 100

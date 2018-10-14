@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { validationResult } from 'express-validator/check';
-import * as slug from 'slug';
 import LivroModel from '../models/Livro';
+import { slugify } from '../util';
 
 class LivroController {
     async get(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -24,8 +24,8 @@ class LivroController {
                 res.status(400).send('Compos inválidos');
             }
 
-            let slugVal = slug(req.body.titulo, { lower: true }); 
-            const dados = Object.assign({slug: slugVal}, req.body);
+            let slug = slugify(req.body.titulo); 
+            const dados = Object.assign({slug: slug}, req.body);
             
             let newItem = await LivroModel.create(dados);
             res.status(201).json(newItem);
