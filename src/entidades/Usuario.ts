@@ -6,7 +6,7 @@ export interface Usuario {
     sobrenome: string,
     email: string,
     foto: string,
-    livro: Livro[],
+    livros: Livro[],
     slug: string
     
 }

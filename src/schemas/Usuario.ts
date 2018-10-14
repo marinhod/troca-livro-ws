@@ -20,10 +20,10 @@ export const UsuarioSchema = new mongoose.Schema({
         type: String,
         max: 100
     },
-    livro: {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: 'Livro'
-    },
+    livros: [{
+        type: String,
+        max: 100
+    }],
     slug: {
         type: String,
         max: 100

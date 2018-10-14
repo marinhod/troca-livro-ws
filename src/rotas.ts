@@ -16,6 +16,13 @@ ROUTER
 .get(`/${USUARIO_URL}/:slug`, USUARIO_CONTROLLER.get);
 
 ROUTER
+.post(`/${USUARIO_URL}/add-livro`, [
+  check('usuario').not().isEmpty().isString(),
+  check('livro').not().isEmpty().isString()
+  ], 
+  USUARIO_CONTROLLER.addLivro);
+
+ROUTER
 .post(`/${USUARIO_URL}`, [
     check('nome').not().isEmpty().isString(),
     check('sobrenome').not().isEmpty().isString(),

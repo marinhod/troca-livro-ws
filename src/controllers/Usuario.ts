@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { validationResult } from 'express-validator/check';
 import UsuarioModel from '../models/Usuario';
+import LivroModel from '../models/Livro';
 import { slugify } from '../util';
 
 class UsuarioController {
@@ -36,6 +37,20 @@ class UsuarioController {
         }
     }
 
+    async addLivro(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                res.status(400).send('Compos inválidos');
+            }
+            
+            await UsuarioModel.addLivro(req.body.usuario, req.body.livro);
+            res.status(400).send('teste');
+        } catch (error) {
+            res.status(500);
+            next(error);
+        }
+    }
 }
 
 export default UsuarioController;
