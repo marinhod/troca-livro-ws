@@ -6,6 +6,19 @@ import LivroController from './Livro';
 import { Livro } from '../entidades/Livro';
 
 class UsuarioController {
+    static async _getPorLivro(livroSlug: string) {
+        try {
+            let usuarios = await UsuarioModel.getPorLivro(livroSlug);
+            if (usuarios) {
+                return usuarios;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+    
     async get(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             let item = await UsuarioModel.get(req.params.slug);

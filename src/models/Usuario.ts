@@ -14,6 +14,11 @@ class UsuarioRepo {
         return item;
     }
 
+    static async getPorLivro(livroSlug: string): Promise<Usuario[]> {
+        let usuarios = await UsuarioModel.find({ livros: livroSlug }).lean().exec();
+        return usuarios;
+    }
+
     static async create(usuario: Usuario): Promise<Usuario> {
         let newItem = new UsuarioModel(usuario);
         return newItem.save();

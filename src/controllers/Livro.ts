@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { validationResult } from 'express-validator/check';
 import LivroModel from '../models/Livro';
+import UsuarioModel from '../models/Usuario';
 import { slugify } from '../util';
 
 class LivroController {
@@ -16,12 +17,18 @@ class LivroController {
             throw error;
         }
     }
-
     async get(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            let item = await LivroModel.get(req.params.slug);
-            if (item) {
-                res.status(200).json(item);
+            let livro = await LivroModel.get(req.params.slug);
+            if (livro) {
+                let obj;
+                let usuarios = await UsuarioModel.getPorLivro(livro.slug);
+                if (usuarios.length >0) {
+                    obj = Object.assign({usuarios: usuarios}, livro);
+                } else {
+                    obj = livro;
+                }
+                res.status(200).json(obj);
             } else {
                 res.status(404).end();
             }

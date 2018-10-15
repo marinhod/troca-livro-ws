@@ -32,5 +32,8 @@ export const LivroSchema = new mongoose.Schema({
     slug: {
         type: String,
         max: 100
-    }
+    },
+    usuarios: [{
+        type: String
+    }]
 });
