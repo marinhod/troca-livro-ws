@@ -4,6 +4,19 @@ import LivroModel from '../models/Livro';
 import { slugify } from '../util';
 
 class LivroController {
+    static async _get(slug: string) {
+        try {
+            let item = await LivroModel.get(slug);
+            if (item) {
+                return item;
+            } else {
+                return false;
+            }
+        } catch(error) {
+            throw error;
+        }
+    }
+
     async get(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             let item = await LivroModel.get(req.params.slug);

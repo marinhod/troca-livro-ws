@@ -2,12 +2,25 @@ import { Request, Response, NextFunction } from 'express';
 import { validationResult } from 'express-validator/check';
 import UsuarioModel from '../models/Usuario';
 import { slugify } from '../util';
+import LivroController from './Livro';
+import { Livro } from '../entidades/Livro';
 
 class UsuarioController {
     async get(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             let item = await UsuarioModel.get(req.params.slug);
             if (item) {
+                let livros: Array<Livro> = [];
+                for (const livro in item.livros) {
+                    let slug = item.livros[livro];
+                    if ((typeof(slug) === 'string')) {
+                        let livroObj = await LivroController._get(slug);
+                        if (livroObj) {
+                            livros.push(livroObj);
+                        }   
+                    }
+                }
+                item.livros = livros;
                 res.status(200).json(item);
             } else {
                 res.status(404).end();
