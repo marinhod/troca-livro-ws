@@ -7,8 +7,9 @@ export const LivroSchema = new mongoose.Schema({
         max: 100 
     },
     autor: { 
-        type: mongoose.SchemaTypes.ObjectId, 
-        ref: 'Author'
+        type: String, 
+        required: true, 
+        max: 100
     },
     genero: {
         type: mongoose.SchemaTypes.ObjectId,

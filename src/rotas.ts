@@ -38,6 +38,7 @@ ROUTER
 ROUTER
 .post(`/${LIVRO_URL}`, [
     check('titulo').not().isEmpty().isString(),
+    check('autor').not().isEmpty().isString(),
     check('ano').not().isEmpty().isString(),
     check('capa').not().isEmpty().isString(),
     check('descricao').not().isEmpty().isString()
