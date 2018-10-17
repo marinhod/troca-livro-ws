@@ -16,7 +16,7 @@ ROUTER
 .get(`/${USUARIO_URL}/:slug`, USUARIO_CONTROLLER.get);
 
 ROUTER
-.post(`/${USUARIO_URL}/add-livro`, [
+.post(`/${USUARIO_URL}/edita-livros`, [
   check('usuario').not().isEmpty().isString(),
   check('livro').not().isEmpty().isString(),
   check('opcao').not().isEmpty().isString().isIn(['insere', 'remove'])
