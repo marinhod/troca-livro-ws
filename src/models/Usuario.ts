@@ -1,6 +1,7 @@
 import * as mongoose from 'mongoose';
 import { UsuarioSchema } from '../schemas/Usuario';
 import { Usuario, UsuarioDocument } from '../entidades/Usuario';
+import { error } from 'util';
 
 const UsuarioModel = mongoose.model<UsuarioDocument>(
     'Usuario', 
@@ -26,11 +27,17 @@ class UsuarioRepo {
 
     static async addLivro(usuarioSlug: string, livroSLug: string): Promise<Usuario> {
         let modificado = await UsuarioModel.findOneAndUpdate(
-            { 
-                slug: usuarioSlug, 
-                'livros': { $ne: livroSLug }
-            }, 
+            { slug: usuarioSlug, 'livros': { $ne: livroSLug } }, 
             { $push: { livros: livroSLug } }, 
+            { new: true } 
+        ).lean().exec();
+        return modificado;
+    }
+
+    static async removeLivro(usuarioSlug: string, livroSLug: string): Promise<Usuario> {
+        let modificado = await UsuarioModel.findOneAndUpdate(
+            { slug: usuarioSlug }, 
+            { $pull: { livros: livroSLug } }, 
             { new: true } 
         ).lean().exec();
         return modificado;

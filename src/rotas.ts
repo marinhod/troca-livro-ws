@@ -18,9 +18,10 @@ ROUTER
 ROUTER
 .post(`/${USUARIO_URL}/add-livro`, [
   check('usuario').not().isEmpty().isString(),
-  check('livro').not().isEmpty().isString()
-  ], 
-  USUARIO_CONTROLLER.addLivro);
+  check('livro').not().isEmpty().isString(),
+  check('opcao').not().isEmpty().isString().isIn(['insere', 'remove'])
+  ],
+  USUARIO_CONTROLLER.editaLivro);
 
 ROUTER
 .post(`/${USUARIO_URL}`, [

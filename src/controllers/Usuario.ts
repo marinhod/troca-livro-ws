@@ -4,6 +4,7 @@ import UsuarioModel from '../models/Usuario';
 import { slugify } from '../util';
 import LivroController from './Livro';
 import { Livro } from '../entidades/Livro';
+import { Usuario } from '../entidades/Usuario';
 
 class UsuarioController {
     static async _getPorLivro(livroSlug: string) {
@@ -62,14 +63,21 @@ class UsuarioController {
         }
     }
 
-    async addLivro(req: Request, res: Response, next: NextFunction): Promise<void> {
+    async editaLivro(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
+            let modificado: Usuario;
+
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 res.status(400).send('Compos inválidos');
             }
-            
-            let modificado = await UsuarioModel.addLivro(req.body.usuario, req.body.livro);
+
+            if (req.body.opcao === 'insere') {
+                modificado = await UsuarioModel.addLivro(req.body.usuario, req.body.livro);
+            } else {
+                modificado = await UsuarioModel.removeLivro(req.body.usuario, req.body.livro);    
+            }
+
             if (!modificado) {
                 res.status(400).send('Livro já está na lista');
             }
